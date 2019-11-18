@@ -5,7 +5,10 @@ module.exports = (app) => {
 		.get(hero.list_all_heroes)
 		.post(hero.create_a_hero);
 
-	app.route('/heroes/:heroId')
+	app.route('/heroes/:category/:limit')
+		.get(hero.list_all_heroes)
+
+	app.route('/hero/:heroId')
 		.get(hero.read_a_hero)
 		.put(hero.update_a_hero)
 		.delete(hero.delete_a_hero);

@@ -3,11 +3,27 @@ const mongoose = require('mongoose');
 const Hero = mongoose.model('Heroes');
 
 exports.list_all_heroes = (req, res) => {
-	Hero.find({speed: {$gte: 80}}, (err, hero) => {
+	var conditions
+	
+	if (req.params.category === "fast") {
+		conditions = {speed: {$gte: 80}}
+	} else if (req.params.category === "powerful") {
+		conditions = {power: {$gte: 80}}
+	} else if (req.params.category === "strong") {
+		conditions = {strength: {$gte: 80}}
+	} else if (req.params.category === "intelligent") {
+		conditions = {intelligence: {$gte: 80}}
+	} else if (req.params.category === "durable") {
+		conditions = {durability: {$gte: 80}}	
+	} else {
+		conditions = {}
+	};
+
+	Hero.find(conditions, (err, hero) => {
 		if (err)
 			res.send(err);
 		res.json(hero);
-	});
+	}).limit(parseInt(req.params.limit)).sort('-power');
 };
 
 exports.create_a_hero = (req, res) => {
