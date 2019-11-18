@@ -10,11 +10,30 @@ const HeroSchema = new Schema({
 		type: String,
 		required: true
 	},
-	powerstats: {
-		type: Map,
-		of: Number,
+	"intelligence": {
+		type: Number,
 		required: true
 	},
+	"strength": {
+		type: Number,
+		required: true
+    },
+    "speed": {
+    	type: Number,
+		required: true
+    },
+    "durability": {
+    	type: Number,
+		required: true
+    },
+    "combat": {
+    	type: Number,
+		required: true
+    },
+    "power": {
+    	type: Number,
+		required: true
+    },
 	salary: {
 		type: Number,
 		required: true

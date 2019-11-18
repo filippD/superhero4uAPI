@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Hero = mongoose.model('Heroes');
 
 exports.list_all_heroes = (req, res) => {
-	Hero.find({}, (err, hero) => {
+	Hero.find({speed: {$gte: 80}}, (err, hero) => {
 		if (err)
 			res.send(err);
 		res.json(hero);
